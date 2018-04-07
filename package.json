@@ -1,0 +1,8 @@
+{
+  "name": "hackernews",
+  "version": "1.0.0",
+  "description": "hackerNews",
+  "main": "index.js",
+  "author": "aushion",
+  "license": "MIT"
+}
