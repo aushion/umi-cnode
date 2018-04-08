@@ -1,0 +1,8 @@
+.logo {
+    width: 120px;
+    height: 28px;
+    background: rgba(255,255,255,0);  
+    margin: 16px 28px 16px 0;
+    float: left;
+    background-image: url(https://o4j806krb.qnssl.com/public/images/cnodejs_light.svg)
+}

@@ -1,29 +1,33 @@
 import Link from 'umi/link';
 import * as React from 'react';
 import styles from './index.css';
-import { List,Avatar } from "antd";
+import { List,Avatar,Tabs } from "antd";
 const cnodeApi = 'https://cnodejs.org/api/v1';
+const TabPane = Tabs.TabPane;
 export default class extends React.Component{
   constructor(props){
     super(props)
   }
 
   state = {
-    data: {}
+    data: [],
+    loading: true
   }
   
   componentDidMount(){
-    let dataArray = [];
-    let that = this;
-    fetch(cnodeApi+'/topics')
+    this.getTopics('all');
+  }
+//请求分类主题
+  getTopics = (tab) => {
+    this.setState({loading: true})
+    fetch(cnodeApi+'/topics?tab='+tab)
     .then( res => {
-      console.log(res)
       if(res.status === 200){
         res.json().then(data => {
-           that.setState({
-             data: data
-           })
-          
+          this.setState({
+            data: data.data,
+            loading: false
+          })
         })
       }
     })
@@ -31,22 +35,55 @@ export default class extends React.Component{
       console.warn(err)
     })
   }
-
+//切换tab触发分类
+  onTabClick = (tab) => {
+    console.log(tab)
+    this.getTopics(tab)
+  }
+//渲染列表函数
+  renderList = (dataSouce) => {
+    return (
+      <List
+          itemLayout="horizontal"
+          dataSource={dataSouce}
+          loading = {this.state.loading}
+          renderItem={item => (
+            <List.Item key={item.id}>
+              <List.Item.Meta
+                avatar={<Avatar src= {item.author.avatar_url} />}
+                title={<Link to={"/list?id="+item.id}>{item.title}</Link>}
+              />
+            </List.Item>
+          )}
+        />
+    )
+  }
   render() {
     return (
-    <List
-    itemLayout="horizontal"
-    dataSource={this.state.data.data}
-    renderItem={item => (
-      <List.Item>
-        <List.Item.Meta
-          avatar={<Avatar src= {item.author.avatar_url} />}
-          title={<a href={item.title}>{item.title}</a>}
-          description="Ant Design, a design language for background applications, is refined by Ant UED Team"
-        />
-      </List.Item>
-    )}
-  />
+    <div>
+      <Tabs defaultActiveKey="all" onChange={this.changeTopic} type="card" onTabClick = {this.onTabClick}>
+        <TabPane tab="全部" key="all">    
+        {this.renderList(this.state.data)}
+        </TabPane>
+        <TabPane tab="精华" key="good">
+         {this.renderList(this.state.data)}
+        </TabPane>
+        <TabPane tab="分享" key="share">
+        {this.renderList(this.state.data)}
+        </TabPane>
+        <TabPane tab="问答" key="ask">
+        {this.renderList(this.state.data)}
+        </TabPane>
+        <TabPane tab="招聘" key="job">
+        {this.renderList(this.state.data)}
+        </TabPane>
+        <TabPane tab="客户端测试" key="dev">
+        {this.renderList(this.state.data)}
+        </TabPane>
+        
+      </Tabs>
+      
+    </div>
     )
 
 
