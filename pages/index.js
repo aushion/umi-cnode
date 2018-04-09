@@ -1,7 +1,7 @@
 import Link from 'umi/link';
 import * as React from 'react';
 import styles from './index.css';
-import { List,Avatar,Tabs } from "antd";
+import { List,Avatar,Tabs, Pagination } from "antd";
 const cnodeApi = 'https://cnodejs.org/api/v1';
 const TabPane = Tabs.TabPane;
 
@@ -125,7 +125,7 @@ export default class extends React.Component{
         </TabPane>
         
       </Tabs>
-      
+      <Pagination defaultCurrent={1} total={200} />
     </div>
     )
 
