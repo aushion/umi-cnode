@@ -24,7 +24,7 @@ export default (props) => {
                     <Menu.Item key="3">新手入门</Menu.Item>
                 </Menu>
             </Header>
-            <Content className={styles.content}>               
+            <Content className={styles.main}>               
                     {props.children}
             </Content>   
             <Footer style={{ textAlign: 'center' }}>Footer</Footer>

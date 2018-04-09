@@ -6,10 +6,14 @@
     float: left;
     background-image: url(https://o4j806krb.qnssl.com/public/images/cnodejs_light.svg)
 }
-.content{
+.main{
      background-color: #fff;
      color: #333;
-     margin: 0 20%;
+     width: 90%;
+     max-width: 1400px;
+     min-width: 960px;
+     min-height: 100%;
+     margin: auto;
      padding: 24px;
 }
 .menu{

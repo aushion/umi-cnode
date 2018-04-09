@@ -1,0 +1,11 @@
+.content{
+    padding: 0;
+    margin-right: 305px;
+}
+.sidebar{
+    width: 290px;
+    font-size: 14px;
+    float: right;
+    margin-bottom: 20px;
+    border: 1px solid lightcoral;
+}

@@ -2,9 +2,6 @@ import * as React from 'react';
 import { List,Card,Spin,Avatar } from "antd";
 const cnodeApi = 'https://cnodejs.org/api/v1';
 export default class extends React.Component{
-  constructor(props){
-    super(props)
-  }
 
   state = {
     details: {},
