@@ -1,4 +1,3 @@
-
 import * as React from 'react';
 import { List,Card,Spin,Avatar } from "antd";
 const cnodeApi = 'https://cnodejs.org/api/v1';
@@ -9,12 +8,14 @@ export default class extends React.Component{
 
   state = {
     details: {},
-    replies:[]
+    replies:[],
+    loading: true
   }
 
   componentDidMount() {
     this.getDetails(this.props.location.query.id)
   }
+  
   getDetails = (id) => {
     fetch(cnodeApi+'/topic/'+id)
     .then(res => {
@@ -23,7 +24,9 @@ export default class extends React.Component{
           console.log(data)
           this.setState(
               {details: data.data,
-              replies: data.data.replies }
+              replies: data.data.replies,
+              loading: false
+            }
           )
         })
       }
@@ -35,6 +38,7 @@ export default class extends React.Component{
   render(){
     return (
       <div>
+       
       <Card title={this.state.details.title}>
         <div 
          dangerouslySetInnerHTML = {          
@@ -42,7 +46,7 @@ export default class extends React.Component{
          }
         />
       </Card>
-
+      <Spin spinning={this.state.loading} delay={500} style={{textAlign: 'center'}}/>
       <Card type="inner" title={this.state.details.reply_count?this.state.details.reply_count+"回复":""}>
             <List
                 itemLayout="horizontal"

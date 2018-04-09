@@ -4,5 +4,8 @@
   "description": "hackerNews",
   "main": "index.js",
   "author": "aushion",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "react-sticky": "^6.0.2"
+  }
 }
