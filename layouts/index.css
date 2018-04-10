@@ -28,6 +28,7 @@
     float: right;
     margin-bottom: 20px;
     background: #fff;
+    height: 0;
 }
 .menu{
     background-color:#444;

@@ -45,15 +45,17 @@ export default class extends React.Component{
         </Card>
         <Card type="inner" style = {{color: '#444'}} loading = {this.state.loading} title={this.state.details.reply_count?this.state.details.reply_count+"回复":""}>
               <List
+               
                   itemLayout="horizontal"
                   dataSource={this.state.replies}
                   renderItem={(item,i) => (
-                    <List.Item key={item.id}>
-                      <List.Item.Meta
+                    <List.Item key={item.id} >
+                      <List.Item.Meta          
                         avatar={<Avatar src= {item.author.avatar_url} />}
                         title={item.author.loginname+' '+(i+1)+'楼'}
                         description={
                           <div
+                          style = {{color: '#444'}}
                           dangerouslySetInnerHTML ={
                             {__html: item.content}
                           }

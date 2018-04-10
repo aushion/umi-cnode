@@ -2,7 +2,7 @@ import Link from 'umi/link';
 import * as React from 'react';
 import styles from './home.css';
 import { List,Avatar,Tabs, Pagination } from "antd";
-import {formatime} from "../util/index";
+import {formatime} from "../../util/index";
 const cnodeApi = 'https://cnodejs.org/api/v1';
 const TabPane = Tabs.TabPane;
 
@@ -69,7 +69,7 @@ export default class extends React.Component{
             <List.Item key={item.id}>
               <List.Item.Meta
                 avatar={<Avatar src= {item.author.avatar_url} />}
-                title={<Link to={"/detail?id="+item.id} className={styles.link}>
+                title={<Link to={"/detail/detail?id="+item.id} className={styles.link}>
                 {this.showLabel(item.tab,item.top,item.good,classific)}
                 {<span style={{color: '#9e78c0',fontSize: '12px'}}>{item.reply_count}</span>}
                 {<span style={{fontSize: '12px'}}>{"/"}</span>}
