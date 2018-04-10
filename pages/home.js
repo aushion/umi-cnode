@@ -2,6 +2,7 @@ import Link from 'umi/link';
 import * as React from 'react';
 import styles from './home.css';
 import { List,Avatar,Tabs, Pagination } from "antd";
+import {formatime} from "../util/index";
 const cnodeApi = 'https://cnodejs.org/api/v1';
 const TabPane = Tabs.TabPane;
 
@@ -54,9 +55,9 @@ export default class extends React.Component{
       page: page
     },() =>{
       this.getTopics(this.state.tab,page)
-    })
-    
+    })  
   }
+
 //渲染列表函数
   renderList = (dataSouce,classific) => {
     return (
@@ -73,7 +74,9 @@ export default class extends React.Component{
                 {<span style={{color: '#9e78c0',fontSize: '12px'}}>{item.reply_count}</span>}
                 {<span style={{fontSize: '12px'}}>{"/"}</span>}
                 {<span style={{fontSize: '12px',color: '#b4b4b4',marginRight: '10px'}}>{item.visit_count}</span>}
-                {item.title}</Link>}
+                {item.title}
+                {<span style={{float: 'right',fontSize: '12px'}}>{formatime(item.last_reply_at)}</span>  }
+                </Link>}
               />
             </List.Item>
           )}
@@ -103,8 +106,10 @@ export default class extends React.Component{
             x = "分享";
             break;
           case 'ask':
-            x = '问答';;
+            x = '问答';
             break;
+          default:
+            x = "";  
         }
     }
   }else{
@@ -124,8 +129,7 @@ export default class extends React.Component{
   render() {
     return (
       <div>
-        <div className = {styles.sidebar}></div>
-        <div className = {styles.content}>
+        <div>
           <Tabs tabBarGutter={0} defaultActiveKey="all"  type="card" onTabClick = {this.onTabClick}>
             <TabPane tab="全部" key="all">    
             {this.renderList(this.state.data,'all')}
@@ -144,8 +148,7 @@ export default class extends React.Component{
             </TabPane>
             <TabPane tab="客户端测试" key="dev">
             {this.renderList(this.state.data,'dev')}
-            </TabPane>
-            
+            </TabPane>          
           </Tabs>
           <Pagination defaultCurrent={1} current = {this.state.page} total={200} onChange = {this.onChangePage}/>
         </div>

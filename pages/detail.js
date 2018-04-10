@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { List,Card,Spin,Avatar } from "antd";
+import { List,Card,Avatar } from "antd";
+// import styles from './detail.css';
 const cnodeApi = 'https://cnodejs.org/api/v1';
 export default class extends React.Component{
 
@@ -35,37 +36,34 @@ export default class extends React.Component{
   render(){
     return (
       <div>
-       
-      <Card title={this.state.details.title}>
-        <div 
-         dangerouslySetInnerHTML = {          
-          {__html:this.state.details.content}
-         }
-        />
-      </Card>
-      <Spin spinning={this.state.loading} delay={500} style={{textAlign: 'center'}}/>
-      <Card type="inner" title={this.state.details.reply_count?this.state.details.reply_count+"回复":""}>
-            <List
-                itemLayout="horizontal"
-                dataSource={this.state.replies}
-                renderItem={(item,i) => (
-                  <List.Item key={item.id}>
-                    <List.Item.Meta
-                      avatar={<Avatar src= {item.author.avatar_url} />}
-                      title={item.author.loginname+' '+(i+1)+'楼'}
-                      description={
-                        <div
-                        dangerouslySetInnerHTML ={
-                          {__html: item.content}
+        <Card style = {{color: '#444'}} loading = {this.state.loading} title={this.state.details.title}>
+          <div 
+            dangerouslySetInnerHTML = {          
+              {__html:this.state.details.content}
+            }
+          />
+        </Card>
+        <Card type="inner" style = {{color: '#444'}} loading = {this.state.loading} title={this.state.details.reply_count?this.state.details.reply_count+"回复":""}>
+              <List
+                  itemLayout="horizontal"
+                  dataSource={this.state.replies}
+                  renderItem={(item,i) => (
+                    <List.Item key={item.id}>
+                      <List.Item.Meta
+                        avatar={<Avatar src= {item.author.avatar_url} />}
+                        title={item.author.loginname+' '+(i+1)+'楼'}
+                        description={
+                          <div
+                          dangerouslySetInnerHTML ={
+                            {__html: item.content}
+                          }
+                          />        
                         }
-                        />
-                      
-                      }
-                    />
-                  </List.Item>
+                      />
+                    </List.Item>
                 )}
-          />   
-      </Card>
+            />   
+        </Card>
       </div>
     )
   }

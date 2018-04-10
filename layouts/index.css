@@ -7,14 +7,27 @@
     background-image: url(https://o4j806krb.qnssl.com/public/images/cnodejs_light.svg)
 }
 .main{
-     background-color: #fff;
-     color: #333;
-     width: 90%;
-     max-width: 1400px;
-     min-width: 960px;
-     min-height: 100%;
-     margin: auto;
-     padding: 24px;
+    color: #333;
+    width: 90%;
+    max-width: 1400px;
+    min-width: 960px;
+    min-height: 400px;
+    margin:  10px auto;
+    position: relative;
+    margin-bottom: 80px;
+}
+.content{
+    padding: 20px;
+    margin-right: 305px;
+    background: #fff;
+    border-radius: 4px;
+}
+.sidebar{
+    width: 290px;
+    font-size: 14px;
+    float: right;
+    margin-bottom: 20px;
+    background: #fff;
 }
 .menu{
     background-color:#444;

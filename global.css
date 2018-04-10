@@ -2,10 +2,11 @@
     background: #444;
     font-size: 20px;
   }
-.footer {
-    border-top: 1px solid #ccc;
-    padding-top: 30-px;
-    color: #aaa;
+.ant-layout-footer {
+   position: fixed;
+   bottom: 0;
+   width: 100%;
+   text-align: center;
   }
   .ant-list-item-meta-content .ant-list-item-meta-title{
     font-size: 16px;
