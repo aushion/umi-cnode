@@ -6,6 +6,9 @@
   "author": "aushion",
   "license": "MIT",
   "dependencies": {
+    "braft-editor": "^1.8.5",
+    "react-draft-wysiwyg": "^1.12.11",
+    "react-quill": "^1.2.7",
     "react-sticky": "^6.0.2"
   }
 }

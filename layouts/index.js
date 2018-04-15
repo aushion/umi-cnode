@@ -1,4 +1,5 @@
 import {Layout, Menu, Input, Card, Button} from 'antd';
+import Link from 'umi/link';
 import styles from "./index.css";
 const {Header, Content, Footer} = Layout;
 const Search = Input.Search;
@@ -33,8 +34,8 @@ export default(props) => {
                             width: '100%',
                             border: 'none'
                         }}>
-                            <p>您可以注册或登录</p>
-                            <Button type="primary">通过GitHub登录</Button>
+                            <p>当前是游客状态，您可以登录享受更多特权</p>
+                            <Button type="primary"><Link to="/login">通过AccessToken登录</Link></Button>
                         </Card>
                     </div>
                     <div className={styles.content}>

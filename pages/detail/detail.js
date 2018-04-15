@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { List,Card,Avatar } from "antd";
 // import styles from './detail.css';
+import  Editor from '../../components/draftEditor';
 const cnodeApi = 'https://cnodejs.org/api/v1';
 export default class extends React.Component{
 
@@ -14,6 +15,7 @@ export default class extends React.Component{
     this.getDetails(this.props.location.query.id)
   }
   
+
   getDetails = (id) => {
     fetch(cnodeApi+'/topic/'+id)
     .then(res => {
@@ -44,8 +46,7 @@ export default class extends React.Component{
           />
         </Card>
         <Card type="inner" style = {{color: '#444'}} loading = {this.state.loading} title={this.state.details.reply_count?this.state.details.reply_count+"回复":""}>
-              <List
-               
+              <List    
                   itemLayout="horizontal"
                   dataSource={this.state.replies}
                   renderItem={(item,i) => (
@@ -65,6 +66,10 @@ export default class extends React.Component{
                     </List.Item>
                 )}
             />   
+        </Card>
+
+        <Card type="inner" title = "添加回复" style = {{marginTop: '10px',}}>
+          <Editor height= {100} />
         </Card>
       </div>
     )
