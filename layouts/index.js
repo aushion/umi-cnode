@@ -13,7 +13,7 @@ export default(props) => {
                 backgroundColor: '#e1e1e1'
             }}>
                 <Header>
-                    <div className={styles.logo}></div>
+                    <a className={styles.logo} href="http://localhost:8000"></a>
                     <Search
                         placeholder="input search text"
                         onSearch={value => console.log(value)}
