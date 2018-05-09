@@ -1,0 +1,15 @@
+.wrapper{
+    overflow: hidden;
+}
+
+.left{
+    margin-right: 305px;
+    background: #fff;
+    padding: 10px 20px;
+    border-radius: 4px;
+}
+.right{
+    float: right;
+    width: 290px;
+    border-radius: 4px;
+}

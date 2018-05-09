@@ -18,18 +18,10 @@
 }
 .content{
     padding: 20px;
-    margin-right: 305px;
     background: #fff;
     border-radius: 4px;
 }
-.sidebar{
-    width: 290px;
-    font-size: 14px;
-    float: right;
-    margin-bottom: 20px;
-    background: #fff;
-    height: 0;
-}
+
 .menu{
     background-color:#444;
     color:#fff;

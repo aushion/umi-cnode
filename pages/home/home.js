@@ -3,6 +3,7 @@ import * as React from 'react';
 import styles from './home.css';
 import { List,Avatar,Tabs, Pagination } from "antd";
 import {formatime} from "../../util/index";
+import UserCard from "../../components/userCard";
 const cnodeApi = 'https://cnodejs.org/api/v1';
 const TabPane = Tabs.TabPane;
 
@@ -127,9 +128,14 @@ export default class extends React.Component{
   )
   }
   render() {
+    let userInfo = JSON.parse(localStorage.getItem('userInfo')); 
+    console.log('userInfo:'+userInfo)
     return (
-      <div>
-        <div>
+      <div className={styles.wrapper}>
+       <div className={styles.right}>
+          <UserCard userInfo = {userInfo}/>
+        </div>
+        <div className={styles.left}>
           <Tabs tabBarGutter={0} defaultActiveKey="all"  type="card" onTabClick = {this.onTabClick}>
             <TabPane tab="全部" key="all">    
             {this.renderList(this.state.data,'all')}
@@ -152,9 +158,8 @@ export default class extends React.Component{
           </Tabs>
           <Pagination defaultCurrent={1} current = {this.state.page} total={200} onChange = {this.onChangePage}/>
         </div>
+       
     </div>
     )
-
-
   }
 }

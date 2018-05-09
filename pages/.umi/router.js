@@ -40,7 +40,7 @@ const routes = [
       {
         "path": "/publish/publish",
         "exact": true,
-        "component": () => React.createElement(require('/usr/local/lib/node_modules/umi/node_modules/_umi-build-dev@0.14.0@umi-build-dev/lib/Compiling.js').default, { route: '/publish/publish' })
+        "component": require('../publish/publish.js').default
       }
     ]
   }
