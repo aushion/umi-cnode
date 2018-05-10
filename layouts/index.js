@@ -1,14 +1,13 @@
-import {Layout, Menu, Input, Card, Button} from 'antd';
-import Link from 'umi/link';
+import {Layout, Menu} from 'antd';
 import styles from "./index.css";
+import router from "umi/router";
+import Link from "umi/link";
 const {Header, Content, Footer} = Layout;
-const Search = Input.Search;
 
-export default(props) => {
-    if(props.location.query.data){
-        localStorage.setItem('userInfo',JSON.stringify(props.location.query.data))
-    } 
-    return (
+
+export default (props) => {
+    const accessToken = localStorage.getItem('accesstoken');
+     return (
         <div>
             <Layout
                 className="layout"
@@ -16,18 +15,17 @@ export default(props) => {
                 backgroundColor: '#e1e1e1'
             }}>
                 <Header>
-                    <a className={styles.logo} href="http://localhost:8000"></a>
-                    <Search
-                        placeholder="input search text"
-                        onSearch={value => console.log(value)}
-                        style={{
-                        width: 200
-                    }}/>
-                    <Menu mode="horizontal" defaultSelectedKeys={['1']} className={styles.menu}>
-                        <Menu.Item key="1">首页</Menu.Item>
-                        <Menu.Item key="2">未读消息</Menu.Item>
-                        <Menu.Item key="3">新手入门</Menu.Item>
-                        <Menu.Item key="4">退出</Menu.Item>
+                    <Link to="/" className={styles.logo}></Link>
+                    <Menu mode="horizontal" defaultSelectedKeys={['1']} className={styles.menu}   onClick={(e) => {
+                        console.log(e)
+                        if(e.key === 'exit'){
+                            localStorage.clear();
+                            router.push('/');
+                        }
+                        }}>
+                        <Menu.Item key="home"><Link to="/"></Link>首页</Menu.Item>
+                        {accessToken?<Menu.Item key="message">未读消息</Menu.Item>:''}
+                        {accessToken?<Menu.Item key="exit">退出</Menu.Item>:<Menu.Item key="login"><Link to="/login"></Link>登录</Menu.Item>}
                         
                     </Menu>
                 </Header>

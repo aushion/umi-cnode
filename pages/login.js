@@ -21,13 +21,15 @@ export  default class extends React.Component{
         headers: new Headers({
           'Content-Type': 'application/json'
         })
-      }).then(res => res.json().then(data => {
-          router.push({
-            pathname: '/',
-            query: {
-              data
-            },
-          })
+      }).then(res => res.json().then( data => {
+          let userInfo = {
+              loginname: data.loginname,
+              avatar_url: data.avatar_url,
+              id: data.id
+          }
+          userInfo = JSON.stringify(userInfo);
+          localStorage.setItem('userInfo',userInfo)
+          router.push('/')
           
       }))
       .catch(error => console.error('Error:', error))

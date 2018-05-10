@@ -2,7 +2,6 @@ import {Card, Button} from 'antd';
 import Link from 'umi/link'
 const UserCard = (props) => {
     const userInfo = props.userInfo;
-    console.log(userInfo)
     const card1 = <Card
         title="个人信息"
         style={{
@@ -10,8 +9,8 @@ const UserCard = (props) => {
         border: 'none'
     }}>
         <div>
-            <img src={userInfo.avatar_url} alt="nidongde"/>
-            <span>{userInfo.loginname}</span>
+            <img src={userInfo?userInfo.avatar_url:''} alt=""/>
+            <span>{userInfo?userInfo.loginname:''}</span>
         </div>
         <Button type="primary"><Link to='publish/publish'>发布话题</Link></Button>
     </Card>

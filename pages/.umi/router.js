@@ -25,7 +25,7 @@ const routes = [
       {
         "path": "/home/home",
         "exact": true,
-        "component": require('../home/home.js').default
+        "component": () => React.createElement(require('/usr/local/lib/node_modules/umi/node_modules/_umi-build-dev@0.14.0@umi-build-dev/lib/Compiling.js').default, { route: '/home/home' })
       },
       {
         "path": "/",
@@ -35,12 +35,12 @@ const routes = [
       {
         "path": "/login",
         "exact": true,
-        "component": require('../login.js').default
+        "component": () => React.createElement(require('/usr/local/lib/node_modules/umi/node_modules/_umi-build-dev@0.14.0@umi-build-dev/lib/Compiling.js').default, { route: '/login' })
       },
       {
         "path": "/publish/publish",
         "exact": true,
-        "component": require('../publish/publish.js').default
+        "component": () => React.createElement(require('/usr/local/lib/node_modules/umi/node_modules/_umi-build-dev@0.14.0@umi-build-dev/lib/Compiling.js').default, { route: '/publish/publish' })
       }
     ]
   }

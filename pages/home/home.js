@@ -22,7 +22,6 @@ export default class extends React.Component{
 //请求分类主题
   getTopics = (tab=this.state.tab,page=this.state.page) => {
     let topicUrl = cnodeApi+'/topics?tab='+tab+'&page='+page;
-    console.log(topicUrl);
     this.setState({loading: true})
     fetch(topicUrl)
     .then( res => {
@@ -129,13 +128,12 @@ export default class extends React.Component{
   }
   render() {
     let userInfo = JSON.parse(localStorage.getItem('userInfo')); 
-    console.log('userInfo:'+userInfo)
     return (
-      <div className={styles.wrapper}>
-       <div className={styles.right}>
+      <div className="wrapper">
+       <div className="sidebar">
           <UserCard userInfo = {userInfo}/>
         </div>
-        <div className={styles.left}>
+        <div className="content">
           <Tabs tabBarGutter={0} defaultActiveKey="all"  type="card" onTabClick = {this.onTabClick}>
             <TabPane tab="全部" key="all">    
             {this.renderList(this.state.data,'all')}
