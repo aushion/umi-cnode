@@ -1,4 +1,5 @@
 import {Card} from 'antd';
+import Link from 'umi/link';
 const AuthorCard = (props) => {
     const userInfo = props.userInfo;
     
@@ -8,7 +9,8 @@ const AuthorCard = (props) => {
         border: 'none'
     }}>
         <div>
-            <img src={userInfo?userInfo.avatar_url:''} alt="" style={{width: '50%',display: 'inline-block'}}/>
+            <Link to={userInfo?'/user/user?loginname='+userInfo.loginname:''}> <img src={userInfo?userInfo.avatar_url:''} alt="" style={{width: '50%',display: 'inline-block'}}/>
+            </Link>
             <span>{userInfo?userInfo.loginname:''}</span>
         </div>     
     </Card>

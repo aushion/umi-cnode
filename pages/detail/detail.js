@@ -68,6 +68,9 @@ export default class extends React.Component{
   .then(response => console.log('Success:', response));  
  }
 
+ onCollect = () => {
+   console.log('collect')
+ }
 
   render(){
     const editorProps = {
@@ -98,14 +101,20 @@ export default class extends React.Component{
         <AuthorCard userInfo = {userInfo}/>
       </div>
       <div className="content">
-        <Card style = {{color: '#444'}} loading = {this.state.loading} title={this.state.details.title}>
+        <Card style = {{color: '#444'}} loading = {this.state.loading} title={this.state.details.title}
+         extra = {<Button type="primary" onClick = {this.onCollect}>收藏</Button>}
+        >
           <div 
             dangerouslySetInnerHTML = {          
               {__html:this.state.details.content}
             }
           />
         </Card>
-        <Card type="inner" style = {{color: '#444',display: this.state.replies.length?'block':'none'}} loading = {this.state.loading} title={this.state.details.reply_count?this.state.details.reply_count+"回复":""}>
+        <Card type="inner" style = {{color: '#444',display: this.state.replies.length?'block':'none'}} 
+        loading = {this.state.loading} 
+        title={this.state.details.reply_count?this.state.details.reply_count+"回复":""}
+       
+        >
               <List    
                   itemLayout="horizontal"
                   dataSource={this.state.replies}

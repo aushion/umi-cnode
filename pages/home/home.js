@@ -75,7 +75,7 @@ export default class extends React.Component{
                 {<span style={{fontSize: '12px'}}>{"/"}</span>}
                 {<span style={{fontSize: '12px',color: '#b4b4b4',marginRight: '10px'}}>{item.visit_count}</span>}
                 {item.title}
-                {<span style={{float: 'right',fontSize: '12px'}}>{formatime(item.last_reply_at)}</span>  }
+                {<span style={{float: 'right',fontSize: '12px'}}>{formatime(item.last_reply_at)}</span>}
                 </Link>}
               />
             </List.Item>
