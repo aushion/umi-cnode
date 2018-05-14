@@ -15,6 +15,7 @@ export default class extends React.Component{
     id: '',
     content: '',
     author: null,
+    is_collect: null
   }
 
   componentDidMount() {
@@ -32,7 +33,8 @@ export default class extends React.Component{
               {details: data.data,
               replies: data.data.replies,
               author: data.data.author,
-              loading: false
+              loading: false,
+              is_collect: data.data.is_collect
             }
           )
         })
@@ -59,7 +61,7 @@ export default class extends React.Component{
     headers: new Headers({
       'Content-Type': 'application/json'
     })
-  }).then(res => res.json().then(data => {
+  }).then( res => res.json().then(data => {
       this.editorInstance.clear();
       this.getDetails(this.state.id)
 
@@ -69,7 +71,38 @@ export default class extends React.Component{
  }
 
  onCollect = () => {
-   console.log('collect')
+   const accesstoken = localStorage.getItem('accesstoken');   
+   let data = {
+     accesstoken: accesstoken,
+     topic_id: this.state.id
+   }
+  fetch(cnodeApi+'/topic_collect/collect',{
+    method: 'POST',
+    body: JSON.stringify(data),
+    headers: new Headers({
+      'Content-Type': 'application/json'
+    })
+  }).then(res => res.json().then(data => {
+      this.setState({is_collect: !this.state.is_collect})
+  }))
+ }
+
+
+ cancelCollect = () =>{
+  const accesstoken = localStorage.getItem('accesstoken');   
+  let data = {
+    accesstoken: accesstoken,
+    topic_id: this.state.id
+  }
+ fetch(cnodeApi+'/topic_collect/de_collect',{
+   method: 'POST',
+   body: JSON.stringify(data),
+   headers: new Headers({
+     'Content-Type': 'application/json'
+   })
+ }).then(res => res.json().then(data => {
+     this.setState({is_collect: !this.state.is_collect})
+ }))
  }
 
   render(){
@@ -101,9 +134,8 @@ export default class extends React.Component{
         <AuthorCard userInfo = {userInfo}/>
       </div>
       <div className="content">
-        <Card style = {{color: '#444'}} loading = {this.state.loading} title={this.state.details.title}
-         extra = {<Button type="primary" onClick = {this.onCollect}>收藏</Button>}
-        >
+        <Card style = {{color: '#444'}} loading = {this.state.loading} title={this.state.details.title} >
+        {!this.state.is_collect?<Button type="primary" onClick = {this.onCollect}>收藏</Button>:<Button type="normal" onClick = {this.cancelCollect}>取消收藏</Button>}
           <div 
             dangerouslySetInnerHTML = {          
               {__html:this.state.details.content}

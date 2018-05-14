@@ -1,3 +1,4 @@
+import * as React from 'react';
 import {Layout, Menu, Badge} from 'antd';
 import styles from "./index.css";
 import router from "umi/router";
@@ -20,8 +21,11 @@ const getMessageCount = () => {
     return count;
 }
 
-export default (props) => {
-
+export default class extends  React.Component{
+    constructor(props) {
+        super(props)
+    }
+  render(){
      return (
         <div>
             <Layout
@@ -35,23 +39,24 @@ export default (props) => {
                         console.log(e)
                         if(e.key === 'exit'){
                             localStorage.clear();
-                            router.push('/');
+                            router.replace('/');
                         }
                         }}>
                         <Menu.Item key="home"><Link to="/"></Link>首页</Menu.Item>
                      
                     
-                     {accessToken?<Menu.Item key="message"><Badge count={getMessageCount()}><Link to="/newMessage/newMessage" style={{color: '#fff'}}>未读消息</Link> </Badge></Menu.Item>:''}
+                        {accessToken?<Menu.Item key="message"><Badge count={getMessageCount()}><Link to="/newMessage/newMessage" style={{color: '#fff'}}>未读消息</Link> </Badge></Menu.Item>:''}
                    
                         {accessToken?<Menu.Item key="exit">退出</Menu.Item>:<Menu.Item key="login"><Link to="/login"></Link>登录</Menu.Item>}
                         
                     </Menu>
                 </Header>
                 <Content className={styles.main}>
-                        {props.children}
+                        {this.props.children}
                 </Content>
                 <Footer className={styles.footer}>Footer</Footer> 
             </Layout>
         </div>
     )
+}
 }

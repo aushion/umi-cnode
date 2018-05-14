@@ -10,11 +10,13 @@ export default class User extends Component {
         loginname: '',
         userInfo: null,
         recent_replies: [],
-        recent_topics: []
+        recent_topics: [],
+        collections: []
     }
     componentDidMount() {
         this.setState({loginname: this.props.location.query.loginname})
         this.getUserInfo(this.props.location.query.loginname)
+        this.getCollections(this.props.location.query.loginname)
     }
     getUserInfo = (loginname) => {
         fetch(cnodeApi+'/user/'+loginname)
@@ -40,6 +42,22 @@ export default class User extends Component {
             console.warn(err)
           })
     }
+
+    getCollections = (loginname) => {
+      fetch(cnodeApi+'/topic_collect/'+loginname)
+      .then(res => {
+        if(res.status === 200){
+          res.json().then(data => {
+            this.setState({
+              collections: data.data
+            })
+          })
+        }
+      })
+      .catch( err=> {
+        console.warn(err)
+      })
+    }
   render() {
     return (
       <div className="wrapper">
@@ -52,6 +70,7 @@ export default class User extends Component {
                 <img src={this.state.userInfo?this.state.userInfo.avatar_url:''} alt="" style={{width: 40,display: 'inline-block'}}/>
                 <span>{this.state.userInfo?this.state.userInfo.loginname:''}</span>
                 <div>{this.state.userInfo?this.state.userInfo.score:''}积分</div>
+                 <Link to={"collections?loginname="+this.props.location.query.loginname}>{this.state.collections.length}个话题收藏</Link>
                 <div>注册时间是{formatime(this.state.userInfo?this.state.userInfo.create_at:"")}</div>
             </div>
         </Card>
@@ -65,7 +84,7 @@ export default class User extends Component {
             <List.Item key={item.id}>
               <List.Item.Meta
                 avatar={<Avatar src= {item.author.avatar_url} />}
-                title={<Link to={"/detail/detail?id="+item.id}>             
+                title={<Link to={"/detail/detail?id="+item.id} style={{color: '#08c'}}>             
                 {item.title}
                 {<span style={{float: 'right',fontSize: '12px'}}>{formatime(item.last_reply_at)}</span>  }
                 </Link>}
@@ -84,7 +103,7 @@ export default class User extends Component {
             <List.Item key={item.id}>
               <List.Item.Meta
                 avatar={<Avatar src= {item.author.avatar_url} />}
-                title={<Link to={"/detail/detail?id="+item.id} >             
+                title={<Link to={"/detail/detail?id="+item.id} style={{color: '#08c'}}>             
                 {item.title}
                 {<span style={{float: 'right',fontSize: '12px'}}>{formatime(item.last_reply_at)}</span>  }
                 </Link>}
