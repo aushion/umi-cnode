@@ -15,12 +15,12 @@ npm install
 ### 启动服务
 
 ```
-npm run dev:weapp
+umi dev
 ```
 
 发布代码
 ```
-npm run build
+umi build
 ```
 
 
