@@ -1,2 +1,4 @@
 /node_modules
 /pages/.umi
+package-lock.json
+yarn-lock.json
