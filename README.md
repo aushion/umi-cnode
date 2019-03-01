@@ -31,12 +31,11 @@ npm run build
 ├── config             // 项目不同环境的配置
 ├── dist               // 项目build目录
 ├── package.json       // 项目配置文件
-├── src                // 生产目录
-│   ├── static         // css js 和图片资源
-│   ├── components     // 各种组件
-│   ├── pages          // 各种页面
-│   └── app.js        // 入口页js
-│   └── app.styl        // 入口页样式
-│ 
+├── pages                // 生产目录
+│   ├── detail        
+│   ├── home     
+│   ├── newMessage         
+│   └── publish      
+│   └── user      
 
 <pre>
